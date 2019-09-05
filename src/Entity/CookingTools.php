@@ -24,7 +24,7 @@ class CookingTools
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\recipe", inversedBy="recipe_tools")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Recipe", inversedBy="recipe_tools")
      */
     private $recipe;
 

@@ -1,10 +1,10 @@
 easy_admin:
     entities:
-        # List the entity class name you want to manage
-        - App\Entity\CookingTools
-        - App\Entity\Ingredient
-        - App\Entity\Recipe
-        - App\Entity\Review
-        - App\Entity\Step
-        - App\Entity\Tag
-        - App\Entity\Unit
+         List the entity class name you want to manage
+         - App\Entity\CookingTools
+         - App\Entity\Ingredient
+         - App\Entity\Recipe
+         - App\Entity\Review
+         - App\Entity\Step
+         - App\Entity\Tag
+         - App\Entity\Unit

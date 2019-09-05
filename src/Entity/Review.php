@@ -32,7 +32,7 @@ class Review
     private $rate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\recipe")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Recipe")
      */
     private $recipe;
 

@@ -24,7 +24,7 @@ class Tag
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\recipe", inversedBy="recipe_tag")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Recipe", inversedBy="recipe_tag")
      */
     private $recipe;
 

@@ -58,6 +58,11 @@ class Recipe
      */
     private $recipe_tools;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
     public function __construct()
     {
         $this->recipe_tag = new ArrayCollection();
@@ -210,6 +215,18 @@ class Recipe
             $this->recipe_tools->removeElement($recipeTool);
             $recipeTool->removeRecipe($this);
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

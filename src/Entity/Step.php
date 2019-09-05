@@ -22,7 +22,7 @@ class Step
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\recipe")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Recipe")
      * @ORM\JoinColumn(nullable=false)
      */
     private $recipe;

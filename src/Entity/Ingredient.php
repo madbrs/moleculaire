@@ -29,13 +29,13 @@ class Ingredient
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\unit")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Unit")
      * @ORM\JoinColumn(nullable=false)
      */
     private $unit;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\recipe", inversedBy="recipe_ingredient")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Recipe", inversedBy="recipe_ingredient")
      */
     private $recipe;
 
