@@ -1,0 +1,19 @@
+.card__style{
+    margin:10px;
+    padding:20px; 
+}
+
+.container{
+    padding:30px;
+}
+
+.btn__style{
+    color: #000000;
+    background-color: #a78f55;
+    border:none;
+}
+
+.btn__style:hover{
+    color:white;
+    background-color: #a78f55;
+}
