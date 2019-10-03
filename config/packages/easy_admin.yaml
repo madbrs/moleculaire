@@ -1,0 +1,9 @@
+easy_admin:
+    entities:
+         - App\Entity\CookingTools
+         - App\Entity\Ingredient
+         - App\Entity\Recipe
+         - App\Entity\Review
+         - App\Entity\Step
+         - App\Entity\Tag
+         - App\Entity\Unit
