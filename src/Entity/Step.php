@@ -17,13 +17,12 @@ class Step
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Recipe")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Recipe", inversedBy="steps")
      */
     private $recipe;
 
@@ -44,15 +43,19 @@ class Step
         return $this;
     }
 
-    public function getRecipe(): ?recipe
+    public function getRecipe(): ?Recipe
     {
         return $this->recipe;
     }
 
-    public function setRecipe(?recipe $recipe): self
+    public function setRecipe(?Recipe $recipe): self
     {
         $this->recipe = $recipe;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->description;
     }
 }

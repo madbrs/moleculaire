@@ -3,12 +3,35 @@
 {% block title %}Recettes{% endblock %}
 
 {% block body %}
-<div class="card mb-3 card__style">
-  <img src="..." class="card-img-top" alt="...">
+
+<div class="card mb-3 card__style--full">
+ 
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    <h5 class="card-title">{{ recipe.title }}</h5>
+<img class="img__style"src="{{ recipe.image }}">
+
+<p>Temps de préparation : {{recipe.setuptime}} min</p>
+<p>Ustensiles: </p>
+{% for tool in recipe.recipetools %}
+<p>{{tool.name}} </p>
+{% endfor %}
+
+<h2>Ingrédients</h2>
+{% for ingr in recipe.recipeingredient %}
+<p class="card-text">
+<li>{{ ingr.name }} : {{ ingr.quantity}} {{ ingr.unit}}</li>
+</p>
+{% endfor %}
+
+<h2>Étapes</h2>
+{% for stp in recipe.steps %}
+<p class="card-text">
+<li>{{ stp.description}}</li>
+</p>
+{% endfor %}
+
+
+   
   </div>
 </div>
 

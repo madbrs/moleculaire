@@ -15,70 +15,19 @@
 <!-- CAROUSEL -->
 <!-- RECIPES -->
 <div class="container">
- <div class="row">
+
 <!-- RCP 1 -->
- 
+{% for recipe in recipe %}
 <div class="col-sm">
 <div class="card card__style" style="width: 18rem;">
-  <img src="../../src/img/home-img-1.jpg" class="card-img-top" alt="...">
+  <img class="img__style"src="{{ recipe.image }}">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary btn__style">Voir la recette</a>
+    <h5 class="card-title">{{ recipe.title }}</h5>
+    <p class="card-text">{{ recipe.description }}</p>
+    <a href="/recettes/{{recipe.id}}" class="btn btn-primary btn__style">Voir la recette</a>
   </div>
 </div>
+{% endfor %}
 
-</div>
-
-<!-- RCP 2 -->
-
-    <div class="col-sm">
-<div class="card card__style" style="width: 18rem;">
-  <img src="../../src/img/home-img-1.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary btn__style">Voir la recette</a>
-  </div>
-</div>
- </div>
-   
-
-    <!-- RCP 3 -->
-
-<div class="col-sm">   
-<div class="card card__style" style="width: 18rem;">
-  <img src="../../src/img/home-img-1.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary btn__style">Voir la recette</a>
-  </div>
-</div>
- </div>
-  <!-- RCP 4 -->  
-  
-    <div class="col-sm">   
-<div class="card card__style" style="width: 18rem;">
-  <img src="../../src/img/home-img-1.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary btn__style">Voir la recette</a>
-  </div>
-</div>
-</div>
-<!-- RCP 5--> 
- 
-    <div class="col-sm">  
-<div class="card card__style" style="width: 18rem;">
-  <img src="../../src/img/home-img-1.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary btn__style">Voir la recette</a>
-  </div>
-</div>
-</div>
 </div>
 {% endblock %}

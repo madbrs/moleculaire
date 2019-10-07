@@ -53,6 +53,7 @@ class Recipe
      */
     private $recipe_ingredient;
 
+
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\CookingTools", mappedBy="recipe")
      */
@@ -63,11 +64,20 @@ class Recipe
      */
     private $description;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Step", mappedBy="recipe")
+     */
+    private $steps;
+
+    
+
+
     public function __construct()
     {
         $this->recipe_tag = new ArrayCollection();
         $this->recipe_ingredient = new ArrayCollection();
         $this->recipe_tools = new ArrayCollection();
+        $this->steps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -231,8 +241,45 @@ class Recipe
         return $this;
     }
 
+
+
     public function __toString()
     {
         return $this->title;
     }
+
+    /**
+     * @return Collection|Step[]
+     */
+    public function getSteps(): Collection
+    {
+        return $this->steps;
+    }
+
+    public function addStep(Step $step): self
+    {
+        if (!$this->steps->contains($step)) {
+            $this->steps[] = $step;
+            $step->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Step $step): self
+    {
+        if ($this->steps->contains($step)) {
+            $this->steps->removeElement($step);
+            // set the owning side to null (unless already changed)
+            if ($step->getRecipe() === $this) {
+                $step->setRecipe(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
+ 
+
 }

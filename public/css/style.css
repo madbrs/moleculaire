@@ -1,10 +1,26 @@
 .card__style{
     margin:10px;
     padding:20px; 
+    height:500px;
+}
+
+.card__style--full{
+    margin:10px;
+    padding:20px; 
+    height:1200px;
+
 }
 
 .container{
     padding:30px;
+    height:auto;
+   
+}
+
+.col-sm{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .btn__style{
@@ -16,4 +32,9 @@
 .btn__style:hover{
     color:white;
     background-color: #a78f55;
+}
+
+.img__style{
+    width:250px;
+    height:250px;
 }

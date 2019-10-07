@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190905132035 extends AbstractMigration
+final class Version20191007134458 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,13 +22,8 @@ final class Version20190905132035 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'sqlite', 'Migration can only be executed safely on \'sqlite\'.');
 
-        $this->addSql('DROP INDEX IDX_794381C659D8A214');
-        $this->addSql('CREATE TEMPORARY TABLE __temp__review AS SELECT id, recipe_id, username, commentary, rate FROM review');
-        $this->addSql('DROP TABLE review');
-        $this->addSql('CREATE TABLE review (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, recipe_id INTEGER DEFAULT NULL, username VARCHAR(60) NOT NULL COLLATE BINARY, commentary CLOB NOT NULL COLLATE BINARY, rate INTEGER NOT NULL, CONSTRAINT FK_794381C659D8A214 FOREIGN KEY (recipe_id) REFERENCES recipe (id) NOT DEFERRABLE INITIALLY IMMEDIATE)');
-        $this->addSql('INSERT INTO review (id, recipe_id, username, commentary, rate) SELECT id, recipe_id, username, commentary, rate FROM __temp__review');
-        $this->addSql('DROP TABLE __temp__review');
-        $this->addSql('CREATE INDEX IDX_794381C659D8A214 ON review (recipe_id)');
+        $this->addSql('CREATE TABLE step (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, recipe_id INTEGER DEFAULT NULL, description VARCHAR(255) NOT NULL)');
+        $this->addSql('CREATE INDEX IDX_43B9FE3C59D8A214 ON step (recipe_id)');
         $this->addSql('DROP INDEX IDX_33C9F81B59D8A214');
         $this->addSql('DROP INDEX IDX_33C9F81BBAD26311');
         $this->addSql('CREATE TEMPORARY TABLE __temp__tag_recipe AS SELECT tag_id, recipe_id FROM tag_recipe');
@@ -38,14 +33,13 @@ final class Version20190905132035 extends AbstractMigration
         $this->addSql('DROP TABLE __temp__tag_recipe');
         $this->addSql('CREATE INDEX IDX_33C9F81B59D8A214 ON tag_recipe (recipe_id)');
         $this->addSql('CREATE INDEX IDX_33C9F81BBAD26311 ON tag_recipe (tag_id)');
-        $this->addSql('DROP INDEX IDX_43B9FE3C59D8A214');
-        $this->addSql('CREATE TEMPORARY TABLE __temp__step AS SELECT id, recipe_id, description FROM step');
-        $this->addSql('DROP TABLE step');
-        $this->addSql('CREATE TABLE step (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, recipe_id INTEGER NOT NULL, description CLOB NOT NULL COLLATE BINARY, CONSTRAINT FK_43B9FE3C59D8A214 FOREIGN KEY (recipe_id) REFERENCES recipe (id) NOT DEFERRABLE INITIALLY IMMEDIATE)');
-        $this->addSql('INSERT INTO step (id, recipe_id, description) SELECT id, recipe_id, description FROM __temp__step');
-        $this->addSql('DROP TABLE __temp__step');
-        $this->addSql('CREATE INDEX IDX_43B9FE3C59D8A214 ON step (recipe_id)');
-        $this->addSql('ALTER TABLE recipe ADD COLUMN description CLOB NOT NULL');
+        $this->addSql('DROP INDEX IDX_794381C659D8A214');
+        $this->addSql('CREATE TEMPORARY TABLE __temp__review AS SELECT id, recipe_id, username, commentary, rate FROM review');
+        $this->addSql('DROP TABLE review');
+        $this->addSql('CREATE TABLE review (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, recipe_id INTEGER DEFAULT NULL, username VARCHAR(60) NOT NULL COLLATE BINARY, commentary CLOB NOT NULL COLLATE BINARY, rate INTEGER NOT NULL, CONSTRAINT FK_794381C659D8A214 FOREIGN KEY (recipe_id) REFERENCES recipe (id) NOT DEFERRABLE INITIALLY IMMEDIATE)');
+        $this->addSql('INSERT INTO review (id, recipe_id, username, commentary, rate) SELECT id, recipe_id, username, commentary, rate FROM __temp__review');
+        $this->addSql('DROP TABLE __temp__review');
+        $this->addSql('CREATE INDEX IDX_794381C659D8A214 ON review (recipe_id)');
         $this->addSql('DROP INDEX IDX_1EFEF66759D8A214');
         $this->addSql('DROP INDEX IDX_1EFEF667E0704780');
         $this->addSql('CREATE TEMPORARY TABLE __temp__cooking_tools_recipe AS SELECT cooking_tools_id, recipe_id FROM cooking_tools_recipe');
@@ -78,6 +72,7 @@ final class Version20190905132035 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'sqlite', 'Migration can only be executed safely on \'sqlite\'.');
 
+        $this->addSql('DROP TABLE step');
         $this->addSql('DROP INDEX IDX_1EFEF667E0704780');
         $this->addSql('DROP INDEX IDX_1EFEF66759D8A214');
         $this->addSql('CREATE TEMPORARY TABLE __temp__cooking_tools_recipe AS SELECT cooking_tools_id, recipe_id FROM cooking_tools_recipe');
@@ -103,11 +98,6 @@ final class Version20190905132035 extends AbstractMigration
         $this->addSql('DROP TABLE __temp__ingredient_recipe');
         $this->addSql('CREATE INDEX IDX_36F27176933FE08C ON ingredient_recipe (ingredient_id)');
         $this->addSql('CREATE INDEX IDX_36F2717659D8A214 ON ingredient_recipe (recipe_id)');
-        $this->addSql('CREATE TEMPORARY TABLE __temp__recipe AS SELECT id, title, image, setup_time, baking_time, price FROM recipe');
-        $this->addSql('DROP TABLE recipe');
-        $this->addSql('CREATE TABLE recipe (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR(150) NOT NULL, image VARCHAR(255) NOT NULL, setup_time INTEGER NOT NULL, baking_time INTEGER NOT NULL, price INTEGER DEFAULT NULL)');
-        $this->addSql('INSERT INTO recipe (id, title, image, setup_time, baking_time, price) SELECT id, title, image, setup_time, baking_time, price FROM __temp__recipe');
-        $this->addSql('DROP TABLE __temp__recipe');
         $this->addSql('DROP INDEX IDX_794381C659D8A214');
         $this->addSql('CREATE TEMPORARY TABLE __temp__review AS SELECT id, recipe_id, username, commentary, rate FROM review');
         $this->addSql('DROP TABLE review');
@@ -115,13 +105,6 @@ final class Version20190905132035 extends AbstractMigration
         $this->addSql('INSERT INTO review (id, recipe_id, username, commentary, rate) SELECT id, recipe_id, username, commentary, rate FROM __temp__review');
         $this->addSql('DROP TABLE __temp__review');
         $this->addSql('CREATE INDEX IDX_794381C659D8A214 ON review (recipe_id)');
-        $this->addSql('DROP INDEX IDX_43B9FE3C59D8A214');
-        $this->addSql('CREATE TEMPORARY TABLE __temp__step AS SELECT id, recipe_id, description FROM step');
-        $this->addSql('DROP TABLE step');
-        $this->addSql('CREATE TABLE step (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, recipe_id INTEGER NOT NULL, description CLOB NOT NULL)');
-        $this->addSql('INSERT INTO step (id, recipe_id, description) SELECT id, recipe_id, description FROM __temp__step');
-        $this->addSql('DROP TABLE __temp__step');
-        $this->addSql('CREATE INDEX IDX_43B9FE3C59D8A214 ON step (recipe_id)');
         $this->addSql('DROP INDEX IDX_33C9F81BBAD26311');
         $this->addSql('DROP INDEX IDX_33C9F81B59D8A214');
         $this->addSql('CREATE TEMPORARY TABLE __temp__tag_recipe AS SELECT tag_id, recipe_id FROM tag_recipe');
