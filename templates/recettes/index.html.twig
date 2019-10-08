@@ -6,27 +6,28 @@
 
 <div class="card mb-3 card__style--full">
  
-  <div class="card-body">
-    <h5 class="card-title">{{ recipe.title }}</h5>
-<img class="img__style"src="{{ recipe.image }}">
+<div class="card-body">
+<h5 class="card-title">{{ recipe.title }}</h5>
+<img class="img__style--full"src="{{ recipe.image }}">
 
-<p>Temps de préparation : {{recipe.setuptime}} min</p>
-<p>Ustensiles: </p>
+<p class="setup--time"> Temps de préparation : {{recipe.setuptime}} min</p>
+<p class="tools--style">Ustensiles:
 {% for tool in recipe.recipetools %}
-<p>{{tool.name}} </p>
+{{tool.name}} /
 {% endfor %}
+</p>
 
-<h2>Ingrédients</h2>
+<h2 class="title--full">Ingrédients</h2>
 {% for ingr in recipe.recipeingredient %}
 <p class="card-text">
 <li>{{ ingr.name }} : {{ ingr.quantity}} {{ ingr.unit}}</li>
 </p>
 {% endfor %}
 
-<h2>Étapes</h2>
+<h2 class="title--full">Étapes</h2>
 {% for stp in recipe.steps %}
 <p class="card-text">
-<li>{{ stp.description}}</li>
+<li class="step__style">{{ stp.description}}</li>
 </p>
 {% endfor %}
 
